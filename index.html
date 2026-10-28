@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeautyCart — Premium Beauty Store</title>
+  <meta name="description" content="BeautyCart premium skincare, perfumes and beauty essentials.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="top-strip">Free shipping on orders above ₹499 <span>•</span> 100% original products <span>•</span> Easy returns</div>
+
+  <header class="header">
+    <a class="brand" href="#" aria-label="BeautyCart home">
+      <span class="brand-mark"><span></span></span>
+      <span>Beauty<span>Cart</span></span>
+    </a>
+
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+      <input id="searchInput" type="search" placeholder="Search for premium skincare, luxury perfumes, brands..." autocomplete="off">
+    </div>
+
+    <div class="header-actions">
+      <button class="user-chip" id="accountBtn" type="button" aria-expanded="false"><span class="avatar">A</span><span class="hello">Hi, Aditya</span><span class="account-arrow">⌄</span></button>
+      <button class="icon-btn" id="wishlistBtn" aria-label="Wishlist">♡<span class="count" id="wishCount">0</span></button>
+      <button class="cart-pill" id="cartBtn" aria-label="Cart">
+        <span>🛍</span><span>🛒</span><b id="cartCount">0</b>
+      </button>
+    </div>
+  </header>
+
+  <div class="account-menu" id="accountMenu" aria-hidden="true">
+    <button class="account-menu-item" type="button" data-account-action="profile">
+      <span class="account-icon">●</span><span>My Profile</span>
+    </button>
+    <button class="account-menu-item" type="button" data-account-action="orders">
+      <span class="account-icon">▣</span><span>Orders</span>
+    </button>
+    <button class="account-menu-item" type="button" data-account-action="wishlist">
+      <span class="account-icon">♥</span><span>Wishlist</span>
+      <span class="account-badge" id="accountWishCount">0</span>
+    </button>
+    <button class="account-menu-item" type="button" data-account-action="coupons">
+      <span class="account-icon">▤</span><span>Coupons</span>
+    </button>
+    <button class="account-menu-item" type="button" data-account-action="notifications">
+      <span class="account-icon">●</span><span>Notifications</span>
+    </button>
+    <button class="account-menu-item" type="button" data-account-action="logout">
+      <span class="account-icon">↻</span><span>Logout</span>
+    </button>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <button class="nav-link active" data-category="all">ALL PRODUCTS</button>
+      <button class="nav-link" data-category="skincare">SKIN CARE</button>
+      <button class="nav-link" data-category="perfumes">PERFUMES</button>
+      <button class="nav-link" data-category="men">MEN</button>
+      <button class="nav-link" data-category="women">WOMEN</button>
+      <button class="nav-link" data-category="offers">OFFERS 🎁</button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <button class="slider-arrow left" id="prevHero">‹</button>
+      <div class="hero-copy">
+        <p class="eyebrow">N A T U R A L &nbsp; B E A U T Y, &nbsp; R E A L &nbsp; Y O U</p>
+        <h1>Glow Naturally<br><em>Everyday</em></h1>
+        <p class="hero-text">Discover premium skincare, luxury perfumes and beauty essentials for a more confident you.</p>
+        <button class="primary-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now <span>→</span></button>
+        <div class="benefits">
+          <div><strong>🚚</strong><span><b>Free Shipping</b><small>On orders above ₹499</small></span></div>
+          <div><strong>♢</strong><span><b>100% Original</b><small>Authentic products</small></span></div>
+          <div><strong>♧</strong><span><b>24/7 Support</b><small>We're here to help</small></span></div>
+        </div>
+      </div>
+      <div class="hero-image" id="heroImage"></div>
+      <button class="slider-arrow right" id="nextHero">›</button>
+      <div class="dots" id="heroDots"></div>
+    </section>
+
+    <section class="products-section" id="products">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">CURATED FOR YOU</p>
+          <h2>Featured Products</h2>
+        </div>
+        <button class="view-all" id="viewAll">View All Products <span>→</span></button>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+      <div class="empty-state" id="emptyState">No products found. Try another search or category.</div>
+    </section>
+
+    <section class="promo">
+      <div><p class="section-kicker">BEAUTY MEMBERSHIP</p><h2>Little luxuries, delivered to you.</h2><p>Unlock extra offers, early access and special member pricing.</p></div>
+      <button class="dark-btn" onclick="showToast('Welcome to BeautyCart membership!')">Explore Benefits →</button>
+    </section>
+
+    <section class="categories">
+      <div class="section-head"><div><p class="section-kicker">SHOP BY MOOD</p><h2>Beauty Categories</h2></div></div>
+      <div class="category-grid">
+        <button data-category="skincare" class="category-card skin"><span>SKINCARE</span><b>Glow & hydrate</b></button>
+        <button data-category="perfumes" class="category-card scent"><span>PERFUMES</span><b>Find your signature</b></button>
+        <button data-category="women" class="category-card women"><span>WOMEN</span><b>Everyday essentials</b></button>
+        <button data-category="men" class="category-card men"><span>MEN</span><b>Modern grooming</b></button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="brand footer-brand"><span class="brand-mark"><span></span></span><span>Beauty<span>Cart</span></span></div><p>Premium beauty, skincare and fragrances curated for you.</p></div>
+      <div><h4>Shop</h4><a href="#products">Skincare</a><a href="#products">Perfumes</a><a href="#products">Men</a><a href="#products">Women</a></div>
+      <div><h4>Help</h4><a href="#">Contact us</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">FAQs</a></div>
+      <div><h4>Stay in the glow</h4><p>Get offers and new-launch updates.</p><div class="subscribe"><input placeholder="Your email"><button onclick="showToast('Thanks for subscribing!')">→</button></div></div>
+    </div>
+    <div class="copyright">© 2026 BeautyCart. Demo storefront.</div>
+  </footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="cartDrawer">
+    <div class="drawer-head"><h3>Your Cart</h3><button id="closeCart">×</button></div>
+    <div id="cartItems"></div>
+    <div class="cart-total"><span>Total</span><strong id="cartTotal">₹0</strong></div>
+    <button class="checkout" id="checkoutBtn">Proceed to Checkout</button>
+  </aside>
+
+  <div class="modal" id="productModal">
+    <button class="modal-close" id="modalClose">×</button>
+    <img id="modalImg" alt="">
+    <div class="modal-info"><p id="modalCat"></p><h2 id="modalName"></h2><p id="modalDesc"></p><div class="modal-price" id="modalPrice"></div><button class="primary-btn" id="modalAdd">Add to Cart →</button></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <style>
+    .header {
+      position: relative;
+    }
+
+    .header-actions {
+      position: relative;
+    }
+
+    .user-chip {
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .account-arrow {
+      font-size: 20px;
+      line-height: 1;
+      margin-left: 2px;
+      transition: transform .2s ease;
+    }
+
+    .user-chip.account-open .account-arrow {
+      transform: rotate(180deg);
+    }
+
+    .account-menu {
+      position: absolute;
+      top: 76px;
+      right: 135px;
+      width: 360px;
+      background: #fff;
+      border: 1px solid #e7e7e7;
+      border-radius: 10px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.14);
+      overflow: hidden;
+      z-index: 9999;
+      display: none;
+    }
+
+    .account-menu.open {
+      display: block;
+      animation: accountDrop .16s ease-out;
+    }
+
+    @keyframes accountDrop {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .account-menu::before {
+      content: "";
+      position: absolute;
+      top: -9px;
+      right: 150px;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-left: 1px solid #e7e7e7;
+      border-top: 1px solid #e7e7e7;
+      transform: rotate(45deg);
+    }
+
+    .account-menu-item {
+      width: 100%;
+      min-height: 68px;
+      padding: 0 20px;
+      border: 0;
+      border-bottom: 1px solid #ededed;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      text-align: left;
+      font: inherit;
+      font-size: 17px;
+      color: #303030;
+      cursor: pointer;
+    }
+
+    .account-menu-item:last-child {
+      border-bottom: 0;
+    }
+
+    .account-menu-item:hover {
+      background: #f7f9fc;
+    }
+
+    .account-icon {
+      width: 26px;
+      color: #2874f0;
+      font-size: 24px;
+      font-weight: 700;
+      text-align: center;
+      flex: 0 0 26px;
+    }
+
+    .account-badge {
+      margin-left: auto;
+      min-width: 40px;
+      height: 34px;
+      padding: 0 10px;
+      border-radius: 11px;
+      background: #f0f1f3;
+      color: #666;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    @media (max-width: 700px) {
+      .account-menu {
+        right: 10px;
+        top: 68px;
+        width: min(360px, calc(100vw - 20px));
+      }
+      .account-menu::before {
+        right: 115px;
+      }
+    }
+  </style>
+
+  <script>
+    (() => {
+      const accountBtn = document.getElementById("accountBtn");
+      const accountMenu = document.getElementById("accountMenu");
+      const accountWishCount = document.getElementById("accountWishCount");
+
+      if (!accountBtn || !accountMenu) return;
+
+      const syncWishlistCount = () => {
+        const mainCount = document.getElementById("wishCount");
+        if (accountWishCount && mainCount) {
+          accountWishCount.textContent = mainCount.textContent || "0";
+        }
+      };
+
+      const closeAccountMenu = () => {
+        accountMenu.classList.remove("open");
+        accountBtn.classList.remove("account-open");
+        accountBtn.setAttribute("aria-expanded", "false");
+        accountMenu.setAttribute("aria-hidden", "true");
+      };
+
+      accountBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const open = accountMenu.classList.toggle("open");
+        accountBtn.classList.toggle("account-open", open);
+        accountBtn.setAttribute("aria-expanded", String(open));
+        accountMenu.setAttribute("aria-hidden", String(!open));
+        if (open) syncWishlistCount();
+      });
+
+      accountMenu.addEventListener("click", (event) => {
+        const item = event.target.closest(".account-menu-item");
+        if (!item) return;
+
+        const action = item.dataset.accountAction;
+        closeAccountMenu();
+
+        if (action === "orders") {
+          if (typeof openOrderHistory === "function") {
+            openOrderHistory();
+          } else if (typeof showToast === "function") {
+            showToast("Orders are loading...");
+          }
+        } else if (action === "wishlist") {
+          document.getElementById("wishlistBtn")?.click();
+        } else if (action === "logout") {
+          if (typeof showToast === "function") showToast("Logged out successfully");
+        } else if (typeof showToast === "function") {
+          const labels = {
+            profile: "My Profile",
+            orders: "Orders",
+            coupons: "Coupons",
+            notifications: "Notifications"
+          };
+          showToast(labels[action] + " selected");
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!accountMenu.contains(event.target) && !accountBtn.contains(event.target)) {
+          closeAccountMenu();
+        }
+      });
+
+      syncWishlistCount();
+    })();
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
